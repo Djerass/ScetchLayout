@@ -1,0 +1,645 @@
+@import "normilize";
+
+// border-box
+* {
+  box-sizing: border-box;
+}
+
+// <Mixins>
+@mixin font_lato {
+  font-family: "Lato", sans-serif;
+}
+
+@mixin gradient_red_to_pink {
+  background: linear-gradient(90deg, #fe985b 2.77%, $pink_color 97.42%);
+}
+
+@mixin dark_fade($opacity) {
+  background-color: rgba(0, 0, 0, $opacity);
+}
+
+@mixin light_fade($opacity) {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+// <Mixins />
+
+//  < Variables>
+$white_color: #ffffff;
+$dark_color: #414141;
+$grey_color: #6c6c6c;
+$pink_color: #fe4fa7;
+
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+
+$screen-sm-max: 767px;
+$screen-md-max: 991px;
+$screen-lg-max: 1199px;
+//  < Variables />
+
+// <Commons>
+.wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.section-outer {
+  @media (max-width: $screen-lg-max) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+// <Commons />
+
+// <Showcase >
+.showcase {
+  width: 100%;
+  background-image: url("../images/showcase.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: $white_color;
+  @include font_lato();
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include dark_fade(0.5);
+    z-index: 5;
+  }
+  &_inner {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  &_logo {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    flex-shrink: 1;
+    padding-top: 35px;
+  }
+  &_content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    &_inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    &_title {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 55px;
+      line-height: 60px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    &_subtitle {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center;
+    }
+    &_form {
+      display: flex;
+      &_input {
+        flex: 1;
+        input {
+          padding: 16px 20px;
+          margin: 0;
+          @include light_fade(0.25);
+          border-radius: 4px;
+          border: none;
+          font-size: 16px;
+          line-height: 19px;
+          color: $white_color;
+          width: 100%;
+          &::placeholder {
+            color: $white_color;
+            font-size: 16px;
+            line-height: 19px;
+            @include font_lato();
+          }
+        }
+      }
+      &_button {
+        button {
+          @include gradient_red_to_pink();
+          border: none;
+          border-radius: 4px;
+          padding: 16px 52px;
+          color: $white_color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  @media (max-width: $screen-md-max) {
+    &_content {
+      &_form {
+        flex-direction: column;
+        align-items: center;
+        &_input {
+          margin-bottom: 10px;
+        }
+      }
+      &_subtitle {
+        margin-bottom: 22px;
+      }
+    }
+  }
+  @media (max-width: $screen-lg-max) {
+    &_content {
+      &_form {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+  }
+  @media (min-width: $screen-lg) {
+    &_content {
+      &_subtitle {
+        width: 45%;
+        margin: 0 auto 44px;
+      }
+      &_form {
+        &_input {
+          padding-right: 40px;
+        }
+      }
+    }
+  }
+}
+// <Showcase />
+
+// <Promo>
+.promo {
+  @include font_lato();
+  &_business {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_content {
+      flex: 1;
+      &_title {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 51px;
+        color: $dark_color;
+        margin-bottom: 57px;
+      }
+      &_subtitle {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        color: $dark_color;
+        margin-bottom: 17px;
+      }
+      &_text {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 28px;
+        color: $grey_color;
+        margin-bottom: 30px;
+      }
+    }
+    &_image {
+      position: relative;
+      display: flex;
+      flex: 1;
+      & > img {
+        width: 100%;
+        border-radius: 8px;
+      }
+      &_btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &_image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include dark_fade(0.5);
+      border-radius: 8px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &_ideas {
+    display: flex;
+    &_idea {
+      text-align: center;
+      flex: 1;
+      &_subtitle {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        color: $dark_color;
+        margin-top: 20px;
+        margin-bottom: 16px;
+      }
+      &_text {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 28px;
+        text-align: center;
+        color: $grey_color;
+        margin: 0 auto;
+        width: 90%;
+      }
+    }
+  }
+  @media (max-width: $screen-sm-max) {
+    &_inner {
+      margin-top: 50px;
+    }
+    &_business {
+      flex-direction: column;
+      text-align: center;
+      &_image {
+        order: -1;
+      }
+    }
+    &_ideas {
+      flex-direction: column;
+      &_idea {
+        margin-bottom: 50px;
+      }
+    }
+  }
+  @media (min-width: $screen-md) {
+    &_inner {
+      margin-top: 117px;
+    }
+    &_business {
+      &_content {
+        padding-right: 35px;
+        &_text {
+          width: 70%;
+        }
+      }
+    }
+    &_ideas {
+      margin-top: 220px;
+      margin-bottom: 120px;
+    }
+  }
+}
+// <Promo/>
+
+// <FOUNDER>
+.founder {
+  @include font_lato();
+  background: #f6fafd;
+  color: $dark_color;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  &_inner {
+    padding-top: 34px;
+    display: flex;
+    align-items: center;
+  }
+  &_img {
+    display: flex;
+    img {
+      height: 100%;
+    }
+  }
+  &_quote {
+    &_text {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 40px;
+      margin-bottom: 31px;
+    }
+    &_name {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 29px;
+    }
+    &_role {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  @media (max-width: $screen-sm-max) {
+    &_inner {
+      flex-direction: column;
+    }
+    &_img {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    &_img {
+      padding-right: 56px;
+    }
+  }
+  @media (min-width: $screen-md-max) {
+    &_quote {
+      &_text {
+        width: 69%;
+      }
+    }
+  }
+}
+// <FOUNDER/>
+
+// <Plans>
+.plans {
+  text-align: center;
+  display: flex;
+  @include font_lato();
+  &_title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 51px;
+    text-align: center;
+    color: $dark_color;
+  }
+  &_subtitle {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    color: $grey_color;
+    margin: 16px auto 66px auto;
+  }
+  &_proposes {
+    display: flex;
+    justify-content: center;
+    &_propose {
+      padding: 52px 44px 67px 44px;
+      flex-basis: 370px;
+      &_gray {
+        background-color: #f6fafd;
+        button {
+          @include gradient_red_to_pink();
+          border-radius: 4px;
+          border: none;
+          color: $white_color;
+        }
+      }
+      &_white {
+        button {
+          border: 1px solid #979797;
+          background: none;
+          border-radius: 4px;
+        }
+      }
+      &_name {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+      }
+      &_price {
+        margin: 28px auto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        color: $dark_color;
+        &_value {
+          font-weight: bold;
+          font-size: 72px;
+          line-height: 86px;
+          text-align: center;
+          color: $pink_color;
+        }
+      }
+      &_description {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 28px;
+        text-align: center;
+        color: $grey_color;
+        margin: 24px auto;
+      }
+      &_btn {
+        button {
+          padding: 16px 52px;
+        }
+      }
+    }
+  }
+  @media (min-width: $screen-md-max) {
+    &_subtitle {
+      width: 45%;
+    }
+  }
+  @media (min-width: $screen-md) {
+    &_proposes {
+      padding-bottom: 150px;
+    }
+    &_title {
+      padding-top: 120px;
+    }
+  }
+  @media (max-width: $screen-sm-max) {
+    &_proposes {
+      padding-bottom: 30px;
+    }
+    &_title {
+      padding-top: 45px;
+    }
+    &_proposes {
+      flex-direction: column;
+    }
+  }
+}
+
+// <Plans />
+
+// <get_started>
+.get_started {
+  text-align: center;
+  color: $white_color;
+  @include gradient_red_to_pink();
+  &_inner {
+    padding: 120px 0;
+  }
+  &_title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 55px;
+    line-height: 60px;
+    text-align: center;
+  }
+  &_text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin: 25px auto;
+  }
+  &_btn {
+    button {
+      background: $white_color;
+      border-radius: 4px;
+      border: none;
+      padding: 16px 50px;
+    }
+  }
+  @media (min-width: $screen-md-max) {
+    &_text {
+      width: 43%;
+    }
+  }
+}
+// < / get_started>
+
+// <footer>
+.footer {
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: $dark_color;
+  }
+  ul {
+    list-style: none;
+  }
+  &_inner {
+    padding-bottom: 90px;
+  }
+  &_title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: $dark_color;
+  }
+  &_main_menu {
+    margin: 29px auto 75px auto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    &_list {
+      display: flex;
+      justify-content: space-between;
+      transform: translateX(-25px);
+      a:hover {
+        color: $pink_color;
+      }
+    }
+  }
+  &_sub_menu {
+    display: flex;
+    justify-content: center;
+    &_list {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      color: $grey_color;
+      display: flex;
+      justify-content: space-between;
+      transform: translateX(-30px);
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    &_title {
+      padding-top: 45px;
+    }
+    &_main_menu {
+      &_list {
+        flex-direction: column;
+        justify-content: space-between;
+        &_item {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &_sub_menu {
+      &_list {
+        flex-direction: column;
+        &_item {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $screen-md) and (max-width: $screen-md-max) {
+    &_title {
+      padding-top: 90px;
+    }
+    &_main_menu {
+      width: 100%;
+      &_list {
+        width: 100%;
+      }
+    }
+    &_sub_menu {
+      width: 100%;
+      &_list {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (min-width: $screen-lg) {
+    &_title {
+      padding-top: 90px;
+    }
+    &_main_menu {
+      width: 100%;
+      &_list {
+        width: 50%;
+      }
+    }
+    &_sub_menu {
+      width: 100%;
+      &_list {
+        width: 65%;
+      }
+    }
+  }
+}
+// </footer>
