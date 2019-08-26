@@ -432,7 +432,6 @@ template {
   font-size: 55px;
   line-height: 60px;
   text-align: center;
-  margin-bottom: 16px;
 }
 
 .showcase_content_subtitle {
@@ -505,6 +504,12 @@ template {
   cursor: pointer;
 }
 
+@media (min-width: 992px) {
+  .showcase_content_title {
+    margin-bottom: 22px;
+  }
+}
+
 @media (max-width: 991px) {
   .showcase_content_form {
     -webkit-box-orient: vertical;
@@ -517,9 +522,6 @@ template {
   }
   .showcase_content_form_input {
     margin-bottom: 10px;
-  }
-  .showcase_content_subtitle {
-    margin-bottom: 22px;
   }
 }
 
